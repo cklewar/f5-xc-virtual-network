@@ -59,7 +59,7 @@ Terraform will perform the following actions:
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
-## Virtual Network module usage example
+## Virtual Network site local network module usage example
 
 ```hcl
 variable "project_prefix" {
@@ -86,7 +86,6 @@ variable "f5xc_tenant" {
   type = string
 }
 
-
 module "tunnel_virtual_network" {
   source                            = "./modules/f5xc/virtual-network"
   f5xc_api_p12_file                 = var.f5xc_api_p12_file
@@ -99,5 +98,42 @@ module "tunnel_virtual_network" {
   f5xc_ip_prefix_next_hop_interface = format("%s-interface-%s", var.project_prefix, var.project_suffix)
 }
 ```
+
+## Virtual Network site local network module usage example
+
+```hcl
+variable "project_prefix" {
+  type        = string
+  description = "prefix string put in front of string"
+  default     = "f5xc"
+}
+
+variable "project_suffix" {
+  type        = string
+  description = "prefix string put at the end of string"
+  default     = "01"
+}
+
+variable "f5xc_api_p12_file" {
+  type = string
+}
+
+variable "f5xc_api_url" {
+  type = string
+}
+
+variable "f5xc_tenant" {
+  type = string
+}
+
+module "global_virtual_network" {
+  source              = "./modules/f5xc/virtual-network"
+  f5xc_name           = local.global_vn_name
+  f5xc_tenant         = var.f5xc_tenant
+  f5xc_namespace      = var.f5xc_namespace
+  f5xc_global_network = true
+}
+```
+
 
 
