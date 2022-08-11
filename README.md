@@ -99,7 +99,7 @@ module "tunnel_virtual_network" {
 }
 ```
 
-## Virtual Network site local network module usage example
+## Virtual Network global network module usage example
 
 ```hcl
 variable "project_prefix" {
