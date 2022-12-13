@@ -1,5 +1,5 @@
 name: F5XC Virtual Network module
-on: push
+on: workflow_dispatch
 jobs:
   f5-xc-virtual-network-module-validate:
     runs-on: ubuntu-latest
